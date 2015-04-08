@@ -44,47 +44,12 @@ public class DownloadJokeTask extends AsyncTask<Void, Void, JokeWrapper> {
 
     @Override
     protected JokeWrapper doInBackground(Void... params) {
-        Log.i(TAG, "Fetching a joke");
-        String url = "http://api.icndb.com/jokes/random?";
-        InputStream stream = retrieveStream(url);
-        JokeWrapper jokeWrapper = null;
-        if (stream != null) {
-            Gson gson = new Gson();
-            Reader reader = new InputStreamReader(stream);
-            try {
-                Log.i(TAG,"Parsing to object");
-                jokeWrapper = gson.fromJson(reader, JokeWrapper.class);
-            } catch (JsonSyntaxException e) {
-                Log.e(TAG, "Error: " + e.getMessage() + " for URL " + url);
-                return null;
-            } catch (JsonIOException e) {
-                Log.e(TAG, "Error: " + e.getMessage() + " for URL " + url);
-                return null;
-            } finally {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    Log.e(TAG, "Error: " + e.getMessage() + " for URL " + url);
-                }
-            }
-        }else{
-            Log.e(TAG,"Could not parse the stream");
-        }
-        if(jokeWrapper == null){
-            Log.e(TAG,"Return a null joke");
-        }
-        return jokeWrapper;
+        throw new UnsupportedOperationException("Operation is not yet supported");
     }
 
     @Override
     protected void onPostExecute(JokeWrapper jokeWrapper) {
-        Log.i(TAG, jokeWrapper.getJoke().getJoke());
-        String jokeString = jokeWrapper.getJoke().getJoke();
-        Intent intent = new Intent();
-        intent.setAction(JokeReceiver.ACTION_RECEIVE_JOKE);
-        intent.addCategory(Intent.CATEGORY_DEFAULT);
-        intent.putExtra(this.PARAM_OUT_JOKE, jokeString);
-        context.sendBroadcast(intent);
+        throw new UnsupportedOperationException("Operation is not yet supported");
 
     }
 
